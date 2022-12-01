@@ -11,11 +11,14 @@ class AuthMiddleware
     }
 
     function validateAuth($headers) {
+        echo "entrou";
         if(!isset($headers['Authorization'])){
             return false;
         }
+        echo "teste";
         $token = $headers['Authorization'];
         $admin = $this->adminService->getByToken($token);
+        echo $admin;
         if ($admin) return true;
         return false;
 }

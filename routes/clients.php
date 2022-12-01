@@ -3,7 +3,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Token, Authorization, X-Requested-With");
 
 require_once "../configs/utils.php";
 require_once "../configs/methods.php";
@@ -18,9 +18,6 @@ if (isMetodo("GET")) {
     try {
         
         $headers = apache_request_headers();
-        foreach ($headers as $header => $value) {
-            echo "$header: $value <br />\n";
-        }
         $isValidAuth = $middleware->validateAuth($headers);
         if (!$isValidAuth) responder (401, ["Message" => "Unauthorized"]);
         $clients = $controller->getAll();

@@ -15,7 +15,7 @@ class MySqlConnection
         $hostname = "localhost";
         $database = "hospital";
         $username = "root";
-        $password = "";
+        $password = "fMXIohcId7BZ";
 
         $dsn = "mysql:host=$hostname;dbname=$database";
         $options = [

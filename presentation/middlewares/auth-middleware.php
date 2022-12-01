@@ -11,15 +11,15 @@ class AuthMiddleware
     }
 
     function validateAuth($headers) {
-        echo "entrou";
         if(!isset($headers['X-Token'])){
             return false;
         }
-        echo "teste";
         $token = $headers['X-Token'];
+        echo "aqui";
         $admin = $this->adminService->getByToken($token);
-        echo $admin;
+        echo "a";
         if ($admin) return true;
+        echo "b";
         return false;
 }
     

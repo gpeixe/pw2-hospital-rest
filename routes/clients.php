@@ -16,7 +16,9 @@ $controller = makeClientController();
 
 if (isMetodo("GET")) {
     try {
+        
         $headers = apache_request_headers();
+        echo $headers;
         $isValidAuth = $middleware->validateAuth($headers);
         if (!$isValidAuth) responder (401, ["Message" => "Unauthorized"]);
         $clients = $controller->getAll();
@@ -44,6 +46,7 @@ if (isMetodo("GET")) {
 if (isMetodo("POST")) {
     try {
         $headers = apache_request_headers();
+        
         $isValidAuth = $middleware->validateAuth($headers);
         if (!$isValidAuth) responder (401, ["Message" => "Unauthorized"]);
         $_POST = json_decode(file_get_contents('php://input'), true);

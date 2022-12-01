@@ -18,7 +18,9 @@ if (isMetodo("GET")) {
     try {
         
         $headers = apache_request_headers();
-        echo $headers["Authorization"];
+        foreach ($headers as $header => $value) {
+            echo "$header: $value <br />\n";
+        }
         $isValidAuth = $middleware->validateAuth($headers);
         if (!$isValidAuth) responder (401, ["Message" => "Unauthorized"]);
         $clients = $controller->getAll();

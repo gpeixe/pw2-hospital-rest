@@ -15,9 +15,6 @@ $controller = makeAdminController();
 
 if (isMetodo("POST")) {
     try {
-        $headers = apache_request_headers();
-        $isValidAuth = $middleware->validateAuth($headers);
-        if (!$isValidAuth) responder (401, ["Message" => "Unauthorized"]);
         $_POST = json_decode(file_get_contents('php://input'), true);
         $response = $controller->create($_POST);
         if (gettype($response) === 'string') responder(400, ["Missing Param:" => $response]);

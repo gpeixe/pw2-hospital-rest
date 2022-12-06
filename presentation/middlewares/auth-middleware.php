@@ -15,11 +15,8 @@ class AuthMiddleware
             return false;
         }
         $token = $headers['X-Token'];
-        echo "aqui";
         $admin = $this->adminService->getByToken($token);
-        echo "a";
         if ($admin) return true;
-        echo "b";
         return false;
 }
     
